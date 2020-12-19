@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TetrisGameController">
+   <children>
+      <Pane fx:id="gameDisplay" layoutX="10.0" layoutY="40.0" prefHeight="600.0" prefWidth="400.0" />
+      <Label fx:id="playerName" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="72.0" text="Label" />
+      <Label fx:id="scores" layoutX="94.0" layoutY="10.0" prefHeight="25.0" prefWidth="72.0" />
+   </children>
+</Pane>
