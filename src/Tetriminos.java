@@ -1,12 +1,38 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+
+class Straight extends Tetriminos {
+
+    public Straight(double blockWidth, double blockHeight) {
+        super(blockWidth, blockHeight);
+    }
+
+    @Override
+    public Rectangle shapeLayout(Rectangle block){
+
+        Rectangle[] straight = new Rectangle[4];
+
+        for(int i = 0; i < straight.length; i++){
+            straight[i] = super.getShape(new Rectangle());
+        }
+
+        double layoutX =
+        for(int i = 0; i < straight.length; i++){
+            straight[i] = straight[i].setLayoutX();
+        }
+    }
+
+}
+
 
 // superclass
 public class Tetriminos {
 
-    double blockWidth;
-    double blockHeight;
-    double Xposition;
-    double Yposition;
+    private double blockWidth;
+    private double blockHeight;
+    private double Xposition;
+    private double Yposition;
 
     Rectangle block;
 
@@ -37,7 +63,7 @@ public class Tetriminos {
         this.Yposition = Yposition;
     }
 
-    public Rectangle shape(Rectangle block){
+    public Rectangle getShape(Rectangle block){
 
         this.block = block;
 
@@ -45,9 +71,17 @@ public class Tetriminos {
         block.setHeight(blockHeight);
         block.setLayoutX(Xposition);
         block.setLayoutY(Yposition);
+        block.setFill(Color.BLACK);
 
         return block;
 
+    }
+
+    public Rectangle shapeLayout(Rectangle block){
+
+        Rectangle rect = new Rectangle();
+
+        return rect;
     }
 
 
