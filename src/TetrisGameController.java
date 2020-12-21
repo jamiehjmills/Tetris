@@ -3,6 +3,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.util.Optional;
 
@@ -34,8 +35,18 @@ public class TetrisGameController {
 
     }
 
+    // Temproraly built a button
     public void startGame(){
 
+        Rectangle rectangle
+
+        Tetriminos tetriminos = new Tetriminos(10,10);
+
+        tetriminos.setX(200);
+        tetriminos.setY(1);
+
+
+        tetriminos.shape(new Rectangle());
     }
 
     public void speedUpGame(){
