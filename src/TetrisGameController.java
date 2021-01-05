@@ -63,22 +63,9 @@ public class TetrisGameController {
     // Todo: need to make other tool to replace the start button.
     public void startGame(ActionEvent event){
 
-//        Tetriminos block = new Straight(100,100);
-//
-//        Rectangle rectangle = new Rectangle(100,100);
-//
-//        rectangle.setLayoutX(100);
-//        rectangle.setLayoutY(200);
-//
-//        block.setX(100);
-//        block.setY(150);
-
-        //root.getChildren().addAll(block.getShape(rectangle));
-
         //Todo: this is to test only
-
-
         //Todo: put cancle(); https://stackoverflow.com/questions/21492693/java-timer-cancel-v-s-timertask-cancel
+
         Timer timer = new Timer();
    TimerTask task = new TimerTask() {
 
@@ -107,20 +94,6 @@ public class TetrisGameController {
         long delay = 0;
         timer.schedule(task, delay, 1000);
 
-
-//        Tetriminos[] blocks = new Tetriminos[3];
-//
-//        double x = 100;
-//
-//        for(int i = 0; i < blocks.length; i++){
-//            blocks[i] = new Tetriminos(10,10);
-//        }
-//
-//
-//        blocks[0].setX(100);
-//        blocks[0].setY(150);
-//        blocks[0].shape(new Rectangle());
-
     }
 
     private class MyTimer extends AnimationTimer {
@@ -146,16 +119,6 @@ public class TetrisGameController {
 
         return "It is working?";
 
-//        gameDisplay.setOnKeyPressed(e -> {
-//            if (e.getCode() == KeyCode.LEFT) {
-//                x--;
-//                System.out.println("Is it working?");
-//            } else if (e.getCode() == KeyCode.RIGHT) {
-//                x++;
-//            } else if (e.getCode() == KeyCode.DOWN) {
-//                y--;
-//            }
-//        });
     }
 
     //Todo: Needs to move the grid to left from the right. It doesn't align with the pane
