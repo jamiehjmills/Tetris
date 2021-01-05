@@ -16,18 +16,15 @@ class Straight extends Tetriminos {
         for(int i = 0; i < straight.length; i++){
             straight[i] = super.getShape(new Rectangle());
         }
-
-        double layoutX =
-        for(int i = 0; i < straight.length; i++){
-            straight[i] = straight[i].setLayoutX();
-        }
+        
+        return block;
     }
 
 }
 
 
 // superclass
-public class Tetriminos {
+public abstract class Tetriminos {
 
     private double blockWidth;
     private double blockHeight;
@@ -77,12 +74,7 @@ public class Tetriminos {
 
     }
 
-    public Rectangle shapeLayout(Rectangle block){
-
-        Rectangle rect = new Rectangle();
-
-        return rect;
-    }
+    public abstract Rectangle shapeLayout(Rectangle block);
 
 
 }
