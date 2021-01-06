@@ -1,11 +1,15 @@
 import javafx.animation.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
-import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -63,6 +67,11 @@ public class TetrisGameController {
     // Todo: need to make other tool to replace the start button.
     public void startGame(ActionEvent event){
 
+
+        // moving a tetorris
+
+
+
         //Todo: this is to test only
 
         Timer timer = new Timer();
@@ -75,9 +84,20 @@ public class TetrisGameController {
 
            if (cancel() != true) {
                y += 1;
-               rect[x][y].setFill(Color.BLACK);
-               moveTetrimino();
+//               rect[x][y].setFill(Color.BLACK);
+//               moveTetrimino();
                System.out.println(y);
+
+               EventHandler<KeyEvent> keyEvent = new EventHandler<KeyEvent>() {
+                   @Override
+                   public void handle(KeyEvent e) {
+
+                           System.out.println(e.getCode());
+
+
+                   }
+
+               };
            }
        }
 
@@ -142,19 +162,7 @@ public class TetrisGameController {
     }
 
 
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 
-            System.out.println("right");
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 
-            System.out.println("Left");
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-
-            System.out.println("up");
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            System.out.println("down");
-        }
-    }
 
 }
