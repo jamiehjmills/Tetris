@@ -46,8 +46,6 @@ public class TetrisGameController {
         //speedUpGame(); // once socres reach a certain number, it will increase its speed.
         //pauseGame(); // if you press a key, the game will stops.
         //endGame(); // if you press a key, the game will end and finish.
-
-        moveTetrimino();
     }
 
     public void getInfoFromUser(){
@@ -67,11 +65,6 @@ public class TetrisGameController {
     // Todo: need to make other tool to replace the start button.
     public void startGame(ActionEvent event){
 
-
-        // moving a tetorris
-
-
-
         //Todo: this is to test only
 
         Timer timer = new Timer();
@@ -88,16 +81,6 @@ public class TetrisGameController {
 //               moveTetrimino();
                System.out.println(y);
 
-               EventHandler<KeyEvent> keyEvent = new EventHandler<KeyEvent>() {
-                   @Override
-                   public void handle(KeyEvent e) {
-
-                           System.out.println(e.getCode());
-
-
-                   }
-
-               };
            }
        }
 
@@ -115,7 +98,22 @@ public class TetrisGameController {
 
     }
 
+    // it works!
+    public void setKeyEvent(KeyEvent e){
+        root.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
 
+                if(e.getCode() == KeyCode.NUMPAD4){
+                    System.out.println("LEFT - NUMPAD4"); // it means left
+                }else if(e.getCode() == KeyCode.NUMPAD6){
+                    System.out.println("RIGHT - NUMPAD6"); // it means right
+                }
+
+            }
+
+        });
+    }
 
     private class MyTimer extends AnimationTimer {
 
@@ -135,13 +133,6 @@ public class TetrisGameController {
         }
     }
 
-
-    public void moveTetrimino() {
-
-
-        System.out.println("It is working?");
-
-    }
 
     //Todo: Needs to move the grid to left from the right. It doesn't align with the pane
 
