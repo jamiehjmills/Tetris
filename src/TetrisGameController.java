@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.input.KeyCode;
+import java.awt.event.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -39,9 +39,9 @@ public class TetrisGameController {
         //tiles();
         tilesUsingGridPane();
         //startGame(); // once you click the start button, the game will start.
-        speedUpGame(); // once socres reach a certain number, it will increase its speed.
-        pauseGame(); // if you press a key, the game will stops.
-        endGame(); // if you press a key, the game will end and finish.
+        //speedUpGame(); // once socres reach a certain number, it will increase its speed.
+        //pauseGame(); // if you press a key, the game will stops.
+        //endGame(); // if you press a key, the game will end and finish.
 
         moveTetrimino();
     }
@@ -64,7 +64,6 @@ public class TetrisGameController {
     public void startGame(ActionEvent event){
 
         //Todo: this is to test only
-        //Todo: put cancle(); https://stackoverflow.com/questions/21492693/java-timer-cancel-v-s-timertask-cancel
 
         Timer timer = new Timer();
    TimerTask task = new TimerTask() {
@@ -96,6 +95,8 @@ public class TetrisGameController {
 
     }
 
+
+
     private class MyTimer extends AnimationTimer {
 
         @Override
@@ -115,9 +116,10 @@ public class TetrisGameController {
     }
 
 
-    public String moveTetrimino() {
+    public void moveTetrimino() {
 
-        return "It is working?";
+
+        System.out.println("It is working?");
 
     }
 
@@ -139,15 +141,20 @@ public class TetrisGameController {
         gameDisplay.getChildren().addAll(gridPane);
     }
 
-    public void speedUpGame(){
 
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+
+            System.out.println("right");
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
+            System.out.println("Left");
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+
+            System.out.println("up");
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            System.out.println("down");
+        }
     }
 
-    public void pauseGame(){
-
-    }
-
-    public void endGame(){
-
-    }
 }
