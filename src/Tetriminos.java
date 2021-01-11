@@ -4,20 +4,22 @@ import javafx.scene.shape.Rectangle;
 
 class Straight extends Tetriminos {
 
-    public Straight(double blockWidth, double blockHeight) {
-        super(blockWidth, blockHeight);
+    public Straight(double blockWidth, double blockHeight, Rectangle rect) {
+        super(blockWidth, blockHeight, rect);
     }
 
+
     @Override
-    public Rectangle shapeLayout(Rectangle block){
+    public Rectangle[] shapeLayout(int x, int y, int difference){
 
         Rectangle[] straight = new Rectangle[4];
 
         for(int i = 0; i < straight.length; i++){
-            straight[i] = super.getShape(new Rectangle());
+            straight[i] = super.getShape(x, y);
+            y=y+difference;
         }
         
-        return block;
+        return straight;
     }
 
 }
@@ -28,14 +30,13 @@ public abstract class Tetriminos {
 
     private double blockWidth;
     private double blockHeight;
-    private double Xposition;
-    private double Yposition;
 
     Rectangle block;
 
-    public Tetriminos (double blockWidth, double blockHeight) {
+    public Tetriminos (double blockWidth, double blockHeight, Rectangle block) {
         this.blockWidth = blockWidth;
         this.blockHeight = blockHeight;
+        this.block = block;
 
     }
     // to create a block. This will be @Override in each subclass
@@ -50,31 +51,19 @@ public abstract class Tetriminos {
         this.blockHeight = blockHeight;
     }
 
-    public void setX(double Xposition){
-
-        this.Xposition = Xposition;
-    }
-
-    public void setY(double Yposition){
-
-        this.Yposition = Yposition;
-    }
-
-    public Rectangle getShape(Rectangle block){
-
-        this.block = block;
+    public Rectangle getShape(int x, int y){
 
         block.setWidth(blockWidth);
         block.setHeight(blockHeight);
-        block.setLayoutX(Xposition);
-        block.setLayoutY(Yposition);
+        block.setLayoutX(x);
+        block.setLayoutY(y);
         block.setFill(Color.BLACK);
 
         return block;
 
     }
 
-    public abstract Rectangle shapeLayout(Rectangle block);
+    public abstract Rectangle[] shapeLayout(int x, int y, int difference);
 
 
 }

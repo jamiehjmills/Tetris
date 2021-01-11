@@ -63,6 +63,12 @@ public class TetrisGameController {
 
     }
 
+    public void bringTetriminos(){
+
+        Tetriminos straight = new Straight(40,40,new Rectangle());
+        //straight.getShape(210, 20, 40);
+    }
+
     // Temporarily built a button
     // Todo: need to make other tool to replace the start button.
     public void startGame(ActionEvent event){
