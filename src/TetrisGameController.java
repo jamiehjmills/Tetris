@@ -30,6 +30,8 @@ public class TetrisGameController {
     @FXML
     private Button startButton;
 
+    boolean keyIsMoving;
+
     //8 columns by 12 rows
     Rectangle[][] rect = new Rectangle[10][15];
 
@@ -68,7 +70,7 @@ public class TetrisGameController {
         //Todo: this is to test only
 
         Timer timer = new Timer();
-   TimerTask task = new TimerTask() {
+        TimerTask task = new TimerTask() {
 
        //https://www.manongdao.com/q-1217836.html
 
@@ -77,8 +79,8 @@ public class TetrisGameController {
 
            if (cancel() != true) {
                y += 1;
-//               rect[x][y].setFill(Color.BLACK);
-//               moveTetrimino();
+               keyIsMoving = true;
+               rect[x][y].setFill(Color.BLACK);
                System.out.println(y);
 
            }
@@ -87,8 +89,11 @@ public class TetrisGameController {
        @Override
        public boolean cancel() {
 
-           if (y >= 14) return true;
-           return false;
+           if (y >= 14){
+               keyIsMoving = false;
+               return true;
+
+           } return false;
        }
 
    };
@@ -104,9 +109,9 @@ public class TetrisGameController {
             @Override
             public void handle(KeyEvent e) {
 
-                if(e.getCode() == KeyCode.NUMPAD4){
+                if(e.getCode() == KeyCode.NUMPAD4 && keyIsMoving){
                     System.out.println("LEFT - NUMPAD4"); // it means left
-                }else if(e.getCode() == KeyCode.NUMPAD6){
+                }else if(e.getCode() == KeyCode.NUMPAD6 && keyIsMoving){
                     System.out.println("RIGHT - NUMPAD6"); // it means right
                 }
 
