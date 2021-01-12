@@ -34,7 +34,7 @@ public class TetrisGameController {
     boolean keyIsMoving;
 
     //8 columns by 12 rows
-    //Rectangle[][] rect = new Rectangle[10][15];
+    Rectangle[][] rect = new Rectangle[10][15];
     // 1 column by 4 rows
     Rectangle[][] straightBoxes = new Rectangle[1][4];
 
@@ -46,9 +46,9 @@ public class TetrisGameController {
     public void initialize(){
         getInfoFromUser();
         bringTetriminos();
+        tilesUsingGridPane();
 
         //tiles();
-        //tilesUsingGridPane();
         //startGame(); // once you click the start button, the game will start.
         //speedUpGame(); // once socres reach a certain number, it will increase its speed.
         //pauseGame(); // if you press a key, the game will stops.
@@ -68,22 +68,23 @@ public class TetrisGameController {
 
     }
 
+    //http://www.java2s.com/Code/Java/JavaFX/AddingRectanglestoGroup.htm
+
     public void bringTetriminos(){
         Tetriminos straight = new Straight(40,40);
         straightBoxes = straight.shapeLayout(190, 50, 40);
 
-//        for(int i = 0; i < 1; i++){
-//            for(int j = 0; j < 4; j++){
-//
-//                gridPane.add(straightBoxes[i][j],i,j);
-//            }
-//        }
+        for(int i = 0; i < 1; i++){
+            for(int j = 0; j < 4; j++){
+
+                gridPane.add(straightBoxes[i][j],i,j);
+
+            }
+        }
         //gridPane.setAlignment(Pos.TOP_LEFT);
 
-        //root.getChildren().addAll(straightBoxes);
-       for(int i = 0; i < 4; i++){
-           root.getChildren().add(straightBoxes[0][i]);
-        }
+        root.getChildren().addAll(gridPane);
+
     }
 
     // Temporarily built a button
@@ -102,10 +103,12 @@ public class TetrisGameController {
 
            if (cancel() != true) {
 
-
-               y += 1;
                keyIsMoving = true;
-               System.out.println(y);
+
+               for(int i = 0; i < 4; i++) {
+                   y += 1;
+                   gridPane.setColumnIndex(straightBoxes[0][i], y);
+               }
 
            }
        }
@@ -135,8 +138,10 @@ public class TetrisGameController {
 
                 if(e.getCode() == KeyCode.NUMPAD4 && keyIsMoving){
                     System.out.println("LEFT - NUMPAD4"); // it means left
+                    //bringTetriminos();
                 }else if(e.getCode() == KeyCode.NUMPAD6 && keyIsMoving){
                     System.out.println("RIGHT - NUMPAD6"); // it means right
+                    //bringTetriminos();
                 }
 
             }
@@ -165,21 +170,21 @@ public class TetrisGameController {
 
     //Todo: Needs to move the grid to left from the right. It doesn't align with the pane
 
-//    public void tilesUsingGridPane(){
-//
-//        for(int i = 0; i < 10; i++){
-//            for(int j = 0; j < 15; j++){
-//
-//                rect[i][j] = new Rectangle(40,40);
-//                rect[i][j].setFill(null);
-//                rect[i][j].setStroke(Color.BLACK);
-//
-//                gridPane.add(rect[i][j],i,j);
-//            }
-//        }
-//        //gridPane.setAlignment(Pos.TOP_LEFT);
-//        gameDisplay.getChildren().addAll(gridPane);
-//    }
+    public void tilesUsingGridPane(){
+
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 15; j++){
+
+                rect[i][j] = new Rectangle(40,40);
+                rect[i][j].setFill(null);
+                rect[i][j].setStroke(Color.BLACK);
+
+                gridPane.add(rect[i][j],i,j);
+            }
+        }
+        //gridPane.setAlignment(Pos.TOP_LEFT);
+        gameDisplay.getChildren().addAll(gridPane);
+    }
 
 
 
