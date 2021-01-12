@@ -4,24 +4,26 @@ import javafx.scene.shape.Rectangle;
 
 class Straight extends Tetriminos {
 
-    public Straight(double blockWidth, double blockHeight, Rectangle rect) {
-        super(blockWidth, blockHeight, rect);
+    public Straight(double blockWidth, double blockHeight) {
+        super(blockWidth, blockHeight);
     }
 
 
     @Override
-    public Rectangle[] shapeLayout(int x, int y, int difference){
+    public Rectangle[][] shapeLayout(int x, int y, int difference) {
 
-        Rectangle[] straight = new Rectangle[4];
+        Rectangle[][] straight = new Rectangle[1][4];
 
-        for(int i = 0; i < straight.length; i++){
-            straight[i] = super.getShape(x, y);
-            y=y+difference;
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.println(y); // works fine
+                straight[i][j] = super.getShape(x, y);
+                y = y + difference;
+            }
         }
-        
+
         return straight;
     }
-
 }
 
 
@@ -31,13 +33,9 @@ public abstract class Tetriminos {
     private double blockWidth;
     private double blockHeight;
 
-    Rectangle block;
-
-    public Tetriminos (double blockWidth, double blockHeight, Rectangle block) {
+    public Tetriminos (double blockWidth, double blockHeight) {
         this.blockWidth = blockWidth;
         this.blockHeight = blockHeight;
-        this.block = block;
-
     }
     // to create a block. This will be @Override in each subclass
     public void setWidth(double blockWidth){
@@ -53,17 +51,19 @@ public abstract class Tetriminos {
 
     public Rectangle getShape(int x, int y){
 
+        Rectangle block = new Rectangle();
+
         block.setWidth(blockWidth);
         block.setHeight(blockHeight);
-        block.setLayoutX(x);
-        block.setLayoutY(y);
+        block.setX(x);
+        block.setY(y);
         block.setFill(Color.BLACK);
 
         return block;
 
     }
 
-    public abstract Rectangle[] shapeLayout(int x, int y, int difference);
+    public abstract Rectangle[][] shapeLayout(int x, int y, int difference);
 
 
 }
