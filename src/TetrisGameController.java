@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
@@ -37,6 +38,9 @@ public class TetrisGameController {
     Rectangle[][] rect = new Rectangle[10][15];
     // 1 column by 4 rows
     Rectangle[][] straightBoxes = new Rectangle[1][4];
+
+    Group group = new Group();
+
 
     GridPane gridPane = new GridPane();
 
@@ -74,10 +78,13 @@ public class TetrisGameController {
         Tetriminos straight = new Straight(40,40);
         straightBoxes = straight.shapeLayout(190, 50, 40);
 
+
+
         for(int i = 0; i < 1; i++){
             for(int j = 0; j < 4; j++){
 
                 gridPane.add(straightBoxes[i][j],i,j);
+                //group.getChildren().add(straightBoxes[i][j]);
 
             }
         }
@@ -103,20 +110,23 @@ public class TetrisGameController {
 
            if (cancel() != true) {
 
+               y++;
+
                keyIsMoving = true;
 
-               for(int i = 0; i < 4; i++) {
-                   y += 1;
-                   gridPane.setColumnIndex(straightBoxes[0][i], y);
-               }
+               System.out.println(y);
 
+               gridPane.setRowIndex(straightBoxes[0][0], y);
+               gridPane.setRowIndex(straightBoxes[0][1], y+1);
+               gridPane.setRowIndex(straightBoxes[0][2], y+2);
+               gridPane.setRowIndex(straightBoxes[0][3], y+3);
            }
        }
 
        @Override
        public boolean cancel() {
 
-           if (y >= 14){
+           if (y >= 11){
                keyIsMoving = false;
                return true;
 
