@@ -47,6 +47,8 @@ public class TetrisGameController {
     int x = 2;
     int y = 0;
 
+    int leftAndRight = 0;
+
     public void initialize(){
         getInfoFromUser();
         bringTetriminos();
@@ -116,6 +118,7 @@ public class TetrisGameController {
 
                System.out.println(y);
 
+               //todo: need to change it to "for" or creating a function
                gridPane.setRowIndex(straightBoxes[0][0], y);
                gridPane.setRowIndex(straightBoxes[0][1], y+1);
                gridPane.setRowIndex(straightBoxes[0][2], y+2);
@@ -148,10 +151,20 @@ public class TetrisGameController {
 
                 if(e.getCode() == KeyCode.NUMPAD4 && keyIsMoving){
                     System.out.println("LEFT - NUMPAD4"); // it means left
-                    //bringTetriminos();
+                    leftAndRight--; //need to add to fix if it has less than 0 it is not working
+                    gridPane.setColumnIndex(straightBoxes[0][0], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][1], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][2], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][3], leftAndRight);
                 }else if(e.getCode() == KeyCode.NUMPAD6 && keyIsMoving){
                     System.out.println("RIGHT - NUMPAD6"); // it means right
-                    //bringTetriminos();
+                    leftAndRight++;
+                    gridPane.setColumnIndex(straightBoxes[0][0], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][1], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][2], leftAndRight);
+                    gridPane.setColumnIndex(straightBoxes[0][3], leftAndRight);
+                }else if(e.getCode() == KeyCode.NUMPAD8 && keyIsMoving){
+                    // this is to rotate 
                 }
 
             }
