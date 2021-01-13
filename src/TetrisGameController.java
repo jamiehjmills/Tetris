@@ -47,13 +47,18 @@ public class TetrisGameController {
     int x = 2;
     int y = 0;
 
+    int y1 = 1;
+    int y2 = 2;
+    int y3 = 3;
+
     int leftAndRight = 0;
+
+    int isReturned = 0;
 
     public void initialize(){
         getInfoFromUser();
         bringTetriminos();
         tilesUsingGridPane();
-
         //tiles();
         //startGame(); // once you click the start button, the game will start.
         //speedUpGame(); // once socres reach a certain number, it will increase its speed.
@@ -120,9 +125,9 @@ public class TetrisGameController {
 
                //todo: need to change it to "for" or creating a function
                gridPane.setRowIndex(straightBoxes[0][0], y);
-               gridPane.setRowIndex(straightBoxes[0][1], y+1);
-               gridPane.setRowIndex(straightBoxes[0][2], y+2);
-               gridPane.setRowIndex(straightBoxes[0][3], y+3);
+               gridPane.setRowIndex(straightBoxes[0][1], y+y1);
+               gridPane.setRowIndex(straightBoxes[0][2], y+y2);
+               gridPane.setRowIndex(straightBoxes[0][3], y+y3);
            }
        }
 
@@ -164,7 +169,51 @@ public class TetrisGameController {
                     gridPane.setColumnIndex(straightBoxes[0][2], leftAndRight);
                     gridPane.setColumnIndex(straightBoxes[0][3], leftAndRight);
                 }else if(e.getCode() == KeyCode.NUMPAD8 && keyIsMoving){
-                    // this is to rotate 
+
+                    isReturned++;
+
+                    if(isReturned%2 == 1) {
+
+                        y1 = 0;
+                        y2 = 0;
+                        y3 = 0;
+
+                        // this is to rotate
+                        gridPane.setColumnIndex(straightBoxes[0][0], leftAndRight);
+                        //gridPane.setRowIndex(straightBoxes[0][0],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][1], leftAndRight + 1);
+                        //gridPane.setRowIndex(straightBoxes[0][1],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][2], leftAndRight + 2);
+                        //gridPane.setRowIndex(straightBoxes[0][2],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][3], leftAndRight + 3);
+                        //gridPane.setRowIndex(straightBoxes[0][3],y+3);
+
+                    }else if(isReturned%2 == 0){
+
+                        y1 = 1;
+                        y2 = 2;
+                        y3 = 3;
+
+                        // this is to rotate
+                        gridPane.setColumnIndex(straightBoxes[0][0], leftAndRight);
+                        //gridPane.setRowIndex(straightBoxes[0][0],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][1], leftAndRight);
+                        //gridPane.setRowIndex(straightBoxes[0][1],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][2], leftAndRight);
+                        //gridPane.setRowIndex(straightBoxes[0][2],y+3);
+
+                        gridPane.setColumnIndex(straightBoxes[0][3], leftAndRight);
+                        //gridPane.setRowIndex(straightBoxes[0][3],y+3);
+
+                    }
+
+                }else if(e.getCode() == KeyCode.NUMPAD5 && keyIsMoving){
+                    // this is to speedup the process
                 }
 
             }
@@ -208,9 +257,5 @@ public class TetrisGameController {
         //gridPane.setAlignment(Pos.TOP_LEFT);
         gameDisplay.getChildren().addAll(gridPane);
     }
-
-
-
-
 
 }
